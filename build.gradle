@@ -159,6 +159,9 @@ dependencies {
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
+//    implementation fg.deobf('org.nanohttpd:nanohttpd:2.3.1')
+//    implementation ('org.nanohttpd:nanohttpd:2.3.1')
+
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
 
@@ -174,7 +177,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "messagechannel",
+                "Specification-Title"     : "message_channel",
                 "Specification-Vendor"    : "Colorful_Ghost",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
