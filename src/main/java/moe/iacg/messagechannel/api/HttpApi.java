@@ -31,7 +31,6 @@ public class HttpApi {
 
     public static void doPostPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
 
-
         String name = PlayerUtil.getName(event.getPlayer());
         String api = BASE_URL + "hook/playerJoin";
 
