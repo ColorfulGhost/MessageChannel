@@ -25,7 +25,7 @@ public class MinecraftServerHook {
         }
         final PlayerList playerList = server.getPlayerList();
         BaseComponent textComponent = new TextComponent("");
-        textComponent.append("<ChatBot> ");
+        textComponent.append("<ShiroBot> ");
         textComponent.append(new String(message.getBytes(), "GBK"));
         playerList.broadcastMessage(textComponent, ChatType.SYSTEM, Util.NIL_UUID);
     }

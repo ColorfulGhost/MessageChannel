@@ -10,7 +10,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 
 public class HttpApi {
 
-    private final static String BASE_URL = "http://localhost:8081/minecraft/";
+    private final static String BASE_URL = "http://192.168.1.220:8081/minecraft/";
 
     public static void doPostChatMessage(ServerChatEvent event) {
         ServerPlayer player = event.getPlayer();
