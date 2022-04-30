@@ -1,5 +1,6 @@
 package moe.iacg.messagechannel.api;
 
+import moe.iacg.messagechannel.common.ConfigLoader;
 import net.minecraft.Util;
 import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.ChatType;
@@ -25,7 +26,10 @@ public class MinecraftServerHook {
         }
         final PlayerList playerList = server.getPlayerList();
         BaseComponent textComponent = new TextComponent("");
-        textComponent.append("<ShiroBot> ");
+        //BOTName
+        textComponent.append("【");
+        textComponent.append(ConfigLoader.configs.get(ConfigLoader.ConfigNames.BOT_NAME).get());
+        textComponent.append("】");
         textComponent.append(new String(message.getBytes(), "GBK"));
         playerList.broadcastMessage(textComponent, ChatType.SYSTEM, Util.NIL_UUID);
     }

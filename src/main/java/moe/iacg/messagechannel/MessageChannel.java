@@ -35,7 +35,7 @@ public class MessageChannel {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ConfigLoader.SERVER_CONFIG);
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
-        ConfigLoader.configs.get(ConfigLoader.ConfigNames.BOT_NAME).get();
+
     }
 
 }

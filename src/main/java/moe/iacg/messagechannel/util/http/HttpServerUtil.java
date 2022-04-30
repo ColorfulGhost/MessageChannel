@@ -23,7 +23,7 @@ public class HttpServerUtil {
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(8288), 0);
 
         //创建一个HttpContext，将路径为/myserver请求映射到MyHttpHandler处理器
-        httpServer.createContext("/minecraft", new MyHttpHandler());
+        httpServer.createContext("/minecraft", new ChatMessageHook());
 
         //设置服务器的线程池对象
         httpServer.setExecutor(Executors.newFixedThreadPool(10));
@@ -33,17 +33,18 @@ public class HttpServerUtil {
     }
 
 
-    public static class  MyHttpHandler implements HttpHandler {
+    public static class ChatMessageHook implements HttpHandler {
         @Override
         public void handle(HttpExchange httpExchange) {
             try {
                 StringBuilder responseText = new StringBuilder();
-                responseText.append("请求方法：").append(httpExchange.getRequestMethod()).append("<br/>");
+//                responseText.append("请求方法：").append(httpExchange.getRequestMethod()).append("<br/>");
+//                responseText.append("请求参数：").append(requestParam).append("<br/>");
+//                responseText.append("请求头：<br/>").append(getRequestHeader(httpExchange));
                 String requestParam = getRequestParam(httpExchange);
                 MinecraftServerHook.sendMessageToServer(requestParam);
+                responseText.append("ok");
 
-                responseText.append("请求参数：").append(requestParam).append("<br/>");
-                responseText.append("请求头：<br/>").append(getRequestHeader(httpExchange));
                 handleResponse(httpExchange, responseText.toString());
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -52,6 +53,7 @@ public class HttpServerUtil {
 
         /**
          * 获取请求头
+         *
          * @param httpExchange
          * @return
          */
@@ -64,6 +66,7 @@ public class HttpServerUtil {
 
         /**
          * 获取请求参数
+         *
          * @param httpExchange
          * @return
          * @throws Exception
@@ -90,6 +93,7 @@ public class HttpServerUtil {
 
         /**
          * 处理响应
+         *
          * @param httpExchange
          * @param responsetext
          * @throws Exception
@@ -97,11 +101,8 @@ public class HttpServerUtil {
         private void handleResponse(HttpExchange httpExchange, String responsetext) throws Exception {
             //生成html
             StringBuilder responseContent = new StringBuilder();
-            responseContent.append("<html>")
-                    .append("<body>")
-                    .append(responsetext)
-                    .append("</body>")
-                    .append("</html>");
+            responseContent
+                    .append(responsetext);
             String responseContentStr = responseContent.toString();
             byte[] responseContentByte = responseContentStr.getBytes("GBK");
 
